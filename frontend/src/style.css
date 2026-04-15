@@ -1,0 +1,577 @@
+  /* ===== RESET & GLOBALS ===== */
+  :global(*) {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+  }
+
+  :global(body) {
+      background-color: #050b10;
+      color: #c9d1d9;
+      font-family: 'Roboto', 'Segoe UI', sans-serif;
+      min-height: 100vh;
+      font-size: 14px;
+  }
+
+  /* ===== APP BAR (Material Design 2016) ===== */
+  .app-bar {
+      background: #0d1f2d;
+      border-bottom: 2px solid #00bfff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 191, 255, 0.15);
+  }
+
+  .app-bar-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 16px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+
+  .app-bar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+  }
+
+  .brand-icon {
+      color: #00bfff;
+      font-size: 22px;
+      line-height: 1;
+  }
+
+  .app-title {
+      font-size: 18px;
+      font-weight: 500;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      line-height: 1.2;
+  }
+
+  .app-subtitle {
+      font-size: 10px;
+      color: #00bfff;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      display: block;
+  }
+
+  /* FAB button (Floating Action Button - tendencia 2016) */
+  .fab {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #00bfff;
+      color: #050b10;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      transition: background 0.2s, transform 0.1s;
+  }
+
+  .fab:hover {
+      background: #33ccff;
+      transform: scale(1.08);
+  }
+
+  .fab:active {
+      transform: scale(0.95);
+  }
+
+  /* ===== MAIN LAYOUT (Responsive Grid) ===== */
+  main {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+  }
+
+  .main-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      /*gap: 16px;
+      padding: 16px;*/
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      flex: 1;
+  }
+
+  /* Tablet */
+  @media (max-width: 900px) {
+      .main-layout {
+          grid-template-columns: 1fr;
+          padding: 12px;
+          gap: 12px;
+      }
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+      .main-layout {
+          padding: 8px;
+          gap: 8px;
+      }
+
+      .app-bar-inner {
+          padding: 0 12px;
+      }
+
+      .app-title {
+          font-size: 15px;
+      }
+  }
+
+  /* ===== CARD BASE (Material Design flat card) ===== */
+  .card {
+      background: #0d1f2d;
+      border: 1px solid #1a3a4a;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+  }
+
+  /* ===== EDITOR CARD ===== */
+  .editor-card {
+      min-height: 400px;
+  }
+
+  .card-header {
+      background: #091520;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-bottom: 1px solid #1a3a4a;
+  }
+
+  .card-header-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+  }
+
+  .dot-green {
+      background: #32cd32;
+  }
+
+  .dot-yellow {
+      background: #f0d000;
+  }
+
+  .dot-red {
+      background: #ff4545;
+  }
+
+  .card-label {
+      font-size: 11px;
+      color: #4a6a80;
+      margin-left: 6px;
+      letter-spacing: 1px;
+      font-family: 'Courier New', monospace;
+  }
+
+  .code-editor {
+      flex: 1;
+      background: #050b10;
+      color: #32cd32;
+      border: none;
+      padding: 16px;
+      font-family: 'Courier New', 'Consolas', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      resize: none;
+      min-height: 320px;
+      outline: none;
+  }
+
+  .code-editor:focus {
+      background: #070e14;
+  }
+
+  .editor-footer {
+      background: #091520;
+      padding: 8px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid #1a3a4a;
+  }
+
+  .line-count {
+      font-size: 11px;
+      color: #4a6a80;
+      letter-spacing: 1px;
+  }
+
+  .btn-run {
+      background: #00bfff;
+      color: #050b10;
+      border: none;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      border-radius: 2px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+  }
+
+  .btn-run:hover {
+      background: #33ccff;
+  }
+
+  /* ===== RESULTS CARD ===== */
+  .results-card {
+      min-height: 400px;
+  }
+
+  /* TAB BAR (Material Design ink bar) */
+  .tab-bar {
+      display: flex;
+      background: #091520;
+      border-bottom: 1px solid #1a3a4a;
+      position: relative;
+  }
+
+  .tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: #4a6a80;
+      padding: 12px 4px 10px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      transition: color 0.2s;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-family: 'Roboto', sans-serif;
+  }
+
+  .tab-btn:hover {
+      color: #7ab8d0;
+  }
+
+  .tab-active {
+      color: #00bfff !important;
+  }
+
+  .tab-icon {
+      font-size: 14px;
+      line-height: 1;
+  }
+
+  .tab-label {
+      font-size: 9px;
+  }
+
+  /* Ink bar animado - tendencia Material 2016 */
+  .tab-ink-bar {
+      position: absolute;
+      bottom: 0;
+      width: 25%;
+      height: 2px;
+      background: #00bfff;
+      transition: left 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .panel-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px;
+  }
+
+  /* ===== KANBAN ===== */
+  .kanban-board {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+  }
+
+  .kanban-column {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .column-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 4px;
+  }
+
+  .column-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #00bfff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+  }
+
+  .column-chip {
+      background: #1a3a4a;
+      color: #4a9ab0;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      letter-spacing: 0.5px;
+  }
+
+  .kanban-card {
+      background: #091520;
+      border-left: 3px solid #00bfff;
+      border-radius: 0 3px 3px 0;
+      padding: 12px 14px;
+      transition: border-left-color 0.2s, background 0.2s;
+  }
+
+  .kanban-card:hover {
+      background: #0d2535;
+      border-left-color: #33ccff;
+  }
+
+  .kanban-card-title {
+      font-size: 13px;
+      color: #c9d1d9;
+      margin-bottom: 8px;
+      line-height: 1.4;
+  }
+
+  .kanban-card-footer {
+      display: flex;
+      justify-content: flex-end;
+  }
+
+  .xp-badge {
+      background: #0a2010;
+      color: #32cd32;
+      font-size: 11px;
+      padding: 3px 10px;
+      border-radius: 2px;
+      border: 1px solid #1a4a20;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+  }
+
+  .xp-icon {
+      font-size: 10px;
+  }
+
+  /* ===== TABLA TOKENS ===== */
+  .table-wrapper {
+      overflow-x: auto;
+  }
+
+  .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+  }
+
+  .data-table th {
+      background: #091520;
+      color: #00bfff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 2px solid #00bfff;
+  }
+
+  .data-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid #1a3a4a;
+      color: #c9d1d9;
+  }
+
+  .data-table tr:hover td {
+      background: #091520;
+  }
+
+  .muted {
+      color: #4a6a80;
+  }
+
+  .accent {
+      color: #32cd32;
+      font-family: 'Courier New', monospace;
+  }
+
+  .empty-row {
+      text-align: center;
+      color: #4a6a80;
+      padding: 24px !important;
+      font-style: italic;
+  }
+
+  /* ===== ERRORES ===== */
+  .error-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  }
+
+  .error-card {
+      background: #1a0808;
+      border: 1px solid #4a1515;
+      border-left: 3px solid #ff4545;
+      border-radius: 0 3px 3px 0;
+      padding: 12px 14px;
+  }
+
+  .error-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+  }
+
+  .error-type-badge {
+      background: #ff4545;
+      color: #fff;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+  }
+
+  .error-location {
+      font-size: 10px;
+      color: #804040;
+      font-family: 'Courier New', monospace;
+  }
+
+  .error-desc {
+      font-size: 12px;
+      color: #e08080;
+      line-height: 1.5;
+  }
+
+  /* ===== EMPTY STATE ===== */
+  .empty-state {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 16px;
+      gap: 12px;
+      color: #2a4a60;
+  }
+
+  .empty-state.success {
+      color: #1a4a20;
+  }
+
+  .empty-state.success p {
+      color: #32cd32;
+  }
+
+  .empty-icon {
+      font-size: 32px;
+      opacity: 0.5;
+  }
+
+  .empty-state p {
+      font-size: 13px;
+      color: #2a4a60;
+      text-align: center;
+  }
+
+  /* ===== DOT OUTPUT ===== */
+  .dot-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+  }
+
+  .dot-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #4a6a80;
+  }
+
+  .dot-code {
+      background: #050b10;
+      border: 1px solid #1a3a4a;
+      border-radius: 3px;
+      padding: 16px;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      color: #32cd32;
+      line-height: 1.7;
+      overflow-x: auto;
+      white-space: pre;
+  }
+
+  /* ===== STATUS BAR (estilo IDE 2016) ===== */
+  .status-bar {
+      background: #00bfff;
+      color: #050b10;
+      padding: 4px 16px;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+  }
+
+  .status-center {
+      flex: 1;
+      text-align: center;
+      font-weight: 500;
+  }
+
+  .status-right {
+      margin-left: auto;
+  }
+
+  @media (max-width: 480px) {
+
+      .status-center,
+      .status-right {
+          display: none;
+      }
+  }
+
+  /* ===== SCROLLBAR PERSONALIZADO ===== */
+  :global(::-webkit-scrollbar) {
+      width: 6px;
+      height: 6px;
+  }
+
+  :global(::-webkit-scrollbar-track) {
+      background: #050b10;
+  }
+
+  :global(::-webkit-scrollbar-thumb) {
+      background: #1a3a4a;
+      border-radius: 3px;
+  }
+
+  :global(::-webkit-scrollbar-thumb:hover) {
+      background: #00bfff;
+  }

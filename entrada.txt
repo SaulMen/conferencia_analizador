@@ -1,0 +1,4 @@
+MISSION "Verdad y reconciliación" {
+    OBJECTIVE "Rescatar al capitan Keyes" XP 500;
+    OBJECTIVE "Rescatar Soldados de la UNSC" XP 12;
+}
